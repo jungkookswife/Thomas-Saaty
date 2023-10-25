@@ -9,3 +9,19 @@ def validate_input(value):
     except ValueError:
         print("Ошибка ввода! Введите положительное число.")
         return None
+
+
+def enter_comparison(criteria):
+    comparison_matrix = np.zeros((len(criteria), len(criteria)))
+
+    for i in range(len(criteria)):
+        for j in range(i + 1, len(criteria)):
+            comparison = None
+            while comparison is None:
+                comparison = validate_input(
+                    input(f"Введите относительную важность между критериями {criteria[i]} и {criteria[j]}: "))
+
+            comparison_matrix[i, j] = comparison
+            comparison_matrix[j, i] = 1 / comparison
+
+    return comparison_matrix
