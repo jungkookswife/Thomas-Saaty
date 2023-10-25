@@ -33,3 +33,23 @@ def calculate_weights(comparison_matrix):
     normalized_weights = weights / np.sum(weights)
 
     return normalized_weights
+
+
+def main():
+    criteria_count = None
+    while criteria_count is None:
+        criteria_count = int(input("Введите количество критериев: "))
+        if criteria_count < 2:
+            print("Ошибка ввода! Введите число больше 1.")
+            criteria_count = None
+
+    criteria = []
+    for i in range(criteria_count):
+        criteria.append(input(f"Введите название критерия {i + 1}: "))
+
+    comparison_matrix = enter_comparison(criteria)
+
+    weights = calculate_weights(comparison_matrix)
+
+    for i in range(len(criteria)):
+        print(f"Весовой коэффициент критерия {criteria[i]}: {weights[i]:.2f}")
