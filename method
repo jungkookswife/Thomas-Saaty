@@ -25,3 +25,11 @@ def enter_comparison(criteria):
             comparison_matrix[j, i] = 1 / comparison
 
     return comparison_matrix
+
+
+def calculate_weights(comparison_matrix):
+    matrix_sum = np.sum(comparison_matrix, axis=1)
+    weights = matrix_sum / len(comparison_matrix)
+    normalized_weights = weights / np.sum(weights)
+
+    return normalized_weights
